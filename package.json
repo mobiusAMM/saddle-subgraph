@@ -6,7 +6,7 @@
     "lint:fix": "eslint src/ --fix && prettier --write src/**/*.ts",
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy d-mooers/mobius --access-token \"$GRAPH_ACCESS_TOKEN\" --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/ --debug",
+    "deploy": "graph deploy d-mooers/mobius --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/ --debug",
     "create-local": "graph create --node http://localhost:8020/ saddle-finance/saddle",
     "remove-local": "graph remove --node http://localhost:8020/ saddle-finance/saddle",
     "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 saddle-finance/saddle"
