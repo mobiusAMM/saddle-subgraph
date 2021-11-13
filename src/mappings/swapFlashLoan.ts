@@ -10,7 +10,7 @@ import {
   RemoveLiquidityOne,
   StopRampA,
   TokenSwap,
-} from "../../generated/USDPool/SwapFlashLoan"
+} from "../../generated/USDC_Optics_Pool/SwapFlashLoan"
 import {
   AddLiquidityEvent,
   FlashLoanEvent,
