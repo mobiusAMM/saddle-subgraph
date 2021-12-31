@@ -4,6 +4,156 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
+    name: pUSD_v2
+    network: celo
+    source:
+      address: "0xa2F0E57d4cEAcF025E81C76f28b9Ad6E9Fbe8735"
+      abi: SwapFlashLoan
+      startBlock: 10434488
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Swap
+        - SystemInfo
+        - Token
+        - NewAdminFeeEvent
+        - NewSwapFeeEvent
+        - NewWithdrawFeeEvent
+        - RampAEvent
+        - StopRampAEvent
+        - AddLiquidityEvent
+        - RemoveLiquidityEvent
+        - TokenExchange
+      abis:
+        - name: SwapFlashLoan
+          file: ./abis/SwapFlashLoan.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: NewAdminFee(uint256)
+          handler: handleNewAdminFee
+        - event: NewSwapFee(uint256)
+          handler: handleNewSwapFee
+        - event: NewWithdrawFee(uint256)
+          handler: handleNewWithdrawFee
+        - event: RampA(uint256,uint256,uint256,uint256)
+          handler: handleRampA
+        - event: StopRampA(uint256,uint256)
+          handler: handleStopRampA
+        - event: AddLiquidity(indexed address,uint256[],uint256[],uint256,uint256)
+          handler: handleAddLiquidity
+        - event: RemoveLiquidity(indexed address,uint256[],uint256)
+          handler: handleRemoveLiquidity
+        - event: RemoveLiquidityImbalance(indexed address,uint256[],uint256[],uint256,uint256)
+          handler: handleRemoveLiquidityImbalance
+        - event: RemoveLiquidityOne(indexed address,uint256,uint256,uint256,uint256)
+          handler: handleRemoveLiquidityOne
+        - event: TokenSwap(indexed address,uint256,uint256,uint128,uint128)
+          handler: handleTokenSwap
+      file: ./src/mappings/swapFlashLoan.ts
+  - kind: ethereum/contract
+    name: pCelo_v2
+    network: celo
+    source:
+      address: "0xFc9e2C63370D8deb3521922a7B2b60f4Cff7e75a"
+      abi: SwapFlashLoan
+      startBlock: 10434491
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Swap
+        - SystemInfo
+        - Token
+        - NewAdminFeeEvent
+        - NewSwapFeeEvent
+        - NewWithdrawFeeEvent
+        - RampAEvent
+        - StopRampAEvent
+        - AddLiquidityEvent
+        - RemoveLiquidityEvent
+        - TokenExchange
+      abis:
+        - name: SwapFlashLoan
+          file: ./abis/SwapFlashLoan.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: NewAdminFee(uint256)
+          handler: handleNewAdminFee
+        - event: NewSwapFee(uint256)
+          handler: handleNewSwapFee
+        - event: NewWithdrawFee(uint256)
+          handler: handleNewWithdrawFee
+        - event: RampA(uint256,uint256,uint256,uint256)
+          handler: handleRampA
+        - event: StopRampA(uint256,uint256)
+          handler: handleStopRampA
+        - event: AddLiquidity(indexed address,uint256[],uint256[],uint256,uint256)
+          handler: handleAddLiquidity
+        - event: RemoveLiquidity(indexed address,uint256[],uint256)
+          handler: handleRemoveLiquidity
+        - event: RemoveLiquidityImbalance(indexed address,uint256[],uint256[],uint256,uint256)
+          handler: handleRemoveLiquidityImbalance
+        - event: RemoveLiquidityOne(indexed address,uint256,uint256,uint256,uint256)
+          handler: handleRemoveLiquidityOne
+        - event: TokenSwap(indexed address,uint256,uint256,uint128,uint128)
+          handler: handleTokenSwap
+      file: ./src/mappings/swapFlashLoan.ts
+  - kind: ethereum/contract
+    name: pEUR_v2
+    network: celo
+    source:
+      address: "0x23C95678862a229fAC088bd9705622d78130bC3e"
+      abi: SwapFlashLoan
+      startBlock: 10434494
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Swap
+        - SystemInfo
+        - Token
+        - NewAdminFeeEvent
+        - NewSwapFeeEvent
+        - NewWithdrawFeeEvent
+        - RampAEvent
+        - StopRampAEvent
+        - AddLiquidityEvent
+        - RemoveLiquidityEvent
+        - TokenExchange
+      abis:
+        - name: SwapFlashLoan
+          file: ./abis/SwapFlashLoan.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: NewAdminFee(uint256)
+          handler: handleNewAdminFee
+        - event: NewSwapFee(uint256)
+          handler: handleNewSwapFee
+        - event: NewWithdrawFee(uint256)
+          handler: handleNewWithdrawFee
+        - event: RampA(uint256,uint256,uint256,uint256)
+          handler: handleRampA
+        - event: StopRampA(uint256,uint256)
+          handler: handleStopRampA
+        - event: AddLiquidity(indexed address,uint256[],uint256[],uint256,uint256)
+          handler: handleAddLiquidity
+        - event: RemoveLiquidity(indexed address,uint256[],uint256)
+          handler: handleRemoveLiquidity
+        - event: RemoveLiquidityImbalance(indexed address,uint256[],uint256[],uint256,uint256)
+          handler: handleRemoveLiquidityImbalance
+        - event: RemoveLiquidityOne(indexed address,uint256,uint256,uint256,uint256)
+          handler: handleRemoveLiquidityOne
+        - event: TokenSwap(indexed address,uint256,uint256,uint128,uint128)
+          handler: handleTokenSwap
+      file: ./src/mappings/swapFlashLoan.ts
+  - kind: ethereum/contract
     name: USDC_Optics_Pool_V2
     network: celo
     source:
@@ -203,7 +353,7 @@ dataSources:
         - event: TokenSwap(indexed address,uint256,uint256,uint128,uint128)
           handler: handleTokenSwap
       file: ./src/mappings/swapFlashLoan.ts
-    - kind: ethereum/contract
+  - kind: ethereum/contract
     name: DAI_Optics_Pool_v2
     network: celo
     source:
@@ -708,6 +858,56 @@ dataSources:
     network: celo
     source:
       address: "0x382Ed834c6b7dBD10E4798B08889eaEd1455E820"
+      abi: SwapFlashLoan
+      startBlock: 9433180
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Swap
+        - SystemInfo
+        - Token
+        - NewAdminFeeEvent
+        - NewSwapFeeEvent
+        - NewWithdrawFeeEvent
+        - RampAEvent
+        - StopRampAEvent
+        - AddLiquidityEvent
+        - RemoveLiquidityEvent
+        - TokenExchange
+      abis:
+        - name: SwapFlashLoan
+          file: ./abis/SwapFlashLoan.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: NewAdminFee(uint256)
+          handler: handleNewAdminFee
+        - event: NewSwapFee(uint256)
+          handler: handleNewSwapFee
+        - event: NewWithdrawFee(uint256)
+          handler: handleNewWithdrawFee
+        - event: RampA(uint256,uint256,uint256,uint256)
+          handler: handleRampA
+        - event: StopRampA(uint256,uint256)
+          handler: handleStopRampA
+        - event: AddLiquidity(indexed address,uint256[],uint256[],uint256,uint256)
+          handler: handleAddLiquidity
+        - event: RemoveLiquidity(indexed address,uint256[],uint256)
+          handler: handleRemoveLiquidity
+        - event: RemoveLiquidityImbalance(indexed address,uint256[],uint256[],uint256,uint256)
+          handler: handleRemoveLiquidityImbalance
+        - event: RemoveLiquidityOne(indexed address,uint256,uint256,uint256,uint256)
+          handler: handleRemoveLiquidityOne
+        - event: TokenSwap(indexed address,uint256,uint256,uint128,uint128)
+          handler: handleTokenSwap
+      file: ./src/mappings/swapFlashLoan.ts
+  - kind: ethereum/contract
+    name: USDT_M
+    network: celo
+    source:
+      address: "0xdBF27fD2a702Cc02ac7aCF0aea376db780D53247"
       abi: SwapFlashLoan
       startBlock: 9433180
     mapping:
